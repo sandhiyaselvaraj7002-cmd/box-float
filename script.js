@@ -15,13 +15,12 @@ function openGift() {
 function generate4Hearts() {
     const field = document.getElementById('memory-field');
     
-    // Adjusted positions to start LOWER on the screen
-    // This prevents them from hiding "Happy Birthday"
+    // NEW POSITIONS: These are pulled UP so all 4 fit on the screen at once
     const positions = [
-        { top: '45%', left: '15%' },
-        { top: '50%', left: '65%' },
-        { top: '75%', left: '20%' },
-        { top: '80%', left: '60%' }
+        { top: '22%', left: '15%' }, // Top Left
+        { top: '25%', left: '60%' }, // Top Right
+        { top: '48%', left: '20%' }, // Middle Left
+        { top: '52%', left: '65%' }  // Middle Right
     ];
 
     memories.forEach((memory, i) => {
@@ -29,18 +28,14 @@ function generate4Hearts() {
         heart.className = 'floating-heart';
         heart.innerHTML = '❤️';
         
-        // Set positions based on the new array
         heart.style.top = positions[i].top;
         heart.style.left = positions[i].left;
-        
-        // Stagger the animation so they float differently
         heart.style.animationDelay = (i * 0.7) + 's';
 
         heart.onclick = () => {
             const modal = document.getElementById('memoryModal');
             const modalBody = document.getElementById('modalBody');
             
-            // Image on top, One-line text below with extra styling
             modalBody.innerHTML = `
                 <img src="${memory.img}" alt="Memory" style="width:100%; border-radius:12px; display:block; margin-bottom:15px;">
                 <p style="margin:0; font-weight:600; color:#800f2f;">${memory.text}</p>
@@ -57,7 +52,6 @@ function closeModal() {
     document.getElementById('memoryModal').style.display = 'none';
 }
 
-// Close if they click the dark background
 window.onclick = (event) => {
     const modal = document.getElementById('memoryModal');
     if (event.target == modal) {
