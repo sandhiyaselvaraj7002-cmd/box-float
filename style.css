@@ -1,0 +1,124 @@
+/* 1. Basic Setup - Removed overflow:hidden to allow scrolling */
+body, html {
+    margin: 0; padding: 0; min-height: 100%;
+    background: radial-gradient(#c90f34, #b80101);
+    font-family: 'Poppins', sans-serif;
+    display: flex; justify-content: center; align-items: flex-start;
+}
+
+.container { 
+    text-align: center; 
+    width: 100%; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 2. Gift Box Styles - Center it vertically before opening */
+.gift-container { 
+    position: absolute; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px; height: 200px; 
+    cursor: pointer; 
+    transition: 0.5s; 
+}
+.gift-lid { width: 220px; height: 50px; background: #ffd700; position: absolute; top: -10px; left: -10px; z-index: 2; border-radius: 5px; }
+.gift-box-body { width: 200px; height: 180px; background: #fff; border-radius: 0 0 10px 10px; position: relative; }
+.ribbon { width: 40px; height: 100%; background: #ffd700; position: absolute; left: 80px; }
+.instruction { color: white; margin-top: 220px; font-weight: 600; width: 250px; }
+
+.hidden { display: none !important; }
+
+/* 3. Header Section - Fixed at the top */
+.birthday-wish {
+    font-family: 'Great Vibes';
+    color: #ffd700;
+    font-size: 3rem;
+    margin: 0;
+    padding-top: 40px;
+    z-index: 100;
+}
+
+.sub-text {
+    color: white;
+    margin-bottom: 20px;
+    z-index: 100;
+}
+
+/* 4. Memory Field - The scrollable area */
+#memory-field {
+    width: 100%;
+    min-height: 120vh; /* Extra height to ensure scrolling is smooth */
+    position: relative;
+    padding-bottom: 100px;
+}
+
+/* 5. Floating Hearts */
+.floating-heart {
+    position: absolute;
+    font-size: 3.5rem;
+    cursor: pointer;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+    animation: float 4s ease-in-out infinite;
+    user-select: none;
+    z-index: 10;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-25px) rotate(10deg); }
+}
+
+/* 6. Modal for Photo and Text */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; /* Always on top */
+    left: 0; top: 0; 
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95); 
+    justify-content: center; 
+    align-items: center;
+}
+
+.modal-content {
+    background: white; 
+    padding: 15px; 
+    border-radius: 20px;
+    width: 85%; 
+    max-width: 350px; 
+    text-align: center;
+    animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popUp {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content img {
+    width: 100%;
+    max-height: 80vh;
+    border-radius: 12px;
+    display: block; 
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    color: #800f2f; 
+    font-weight: 600; 
+    font-size: 1.1rem;
+    margin: 0; 
+}
+
+.close { 
+    position: absolute; 
+    top: -45px; 
+    right: 0; 
+    color: white; 
+    font-size: 40px; 
+    cursor: pointer; 
+}
